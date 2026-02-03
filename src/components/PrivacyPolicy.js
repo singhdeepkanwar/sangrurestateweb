@@ -1,12 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import LOGO_IMG from '../assets/logo-white.png';
 import FooterSimple from './FooterSimple';
 
 const PrivacyPolicy = () => (
     <div className="page-container fade-in">
         <nav className="doc-nav">
             <Link to="/" style={{ textDecoration: 'none' }}>
-                <div className="brand" style={{ cursor: 'pointer' }}>Sangrur<span className="brand-accent">Estate</span></div>
+                <div className="brand" style={{ cursor: 'pointer' }}>
+                    <img src={LOGO_IMG} alt="Sangrur Estate" className="brand-logo" style={{ filter: 'invert(1)' }} />
+                </div>
             </Link>
             <Link to="/" className="btn-text">← Back to Home</Link>
         </nav>

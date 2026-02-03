@@ -1,12 +1,14 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../App.css'; // Assuming styles are global or import specific css
+import MOCK_PHONE_IMG from '../assets/app-mockup.png';
+import HERO_VIDEO from '../assets/hero-video.mp4';
+import LOGO_IMG from '../assets/logo-white.png';
 
 // --- ASSETS ---
-const HERO_VIDEO_URL = "https://videos.pexels.com/video-files/7578546/7578546-uhd_2560_1440_30fps.mp4";
-const PLAY_STORE_IMG = "https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg";
-const APP_STORE_IMG = "https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg";
-const MOCK_PHONE_IMG = "https://b.zmtcdn.com/data/o2_assets/f773629053b24263e69f601925790f301680693809.png";
+// Video is now imported locally
+
+
 
 const LandingPage = () => {
     const navigate = useNavigate();
@@ -16,18 +18,21 @@ const LandingPage = () => {
             {/* Hero */}
             <header className="hero" id="home">
                 <video className="hero-video" autoPlay loop muted playsInline>
-                    <source src={HERO_VIDEO_URL} type="video/mp4" />
+                    <source src={HERO_VIDEO} type="video/mp4" />
                 </video>
                 <div className="hero-overlay"></div>
 
                 <nav className="nav">
                     <div className="container nav-content">
-                        <div className="brand">Sangrur<span className="brand-accent">Estate</span></div>
+                        <div className="brand">
+                            <img src={LOGO_IMG} alt="Sangrur Estate" className="brand-logo" />
+                        </div>
                         <div className="nav-links">
                             <a href="#features">Features</a>
                             <a href="#app">Get App</a>
                             <Link to="/faq" className="nav-link-btn">FAQ</Link>
-                            <button className="nav-cta" onClick={() => window.location.href = '#app'}>Download</button>
+
+                            <button className="nav-cta" style={{ cursor: 'default' }}>Coming Soon</button>
                         </div>
                     </div>
                 </nav>
@@ -38,8 +43,20 @@ const LandingPage = () => {
                         <h1>Find your next<br /><span className="text-highlight">Dream Home</span></h1>
                         <p className="hero-sub">Buy, Rent, and Sell properties with zero hassle. Verified listings, direct owner contact, and premium insights.</p>
                         <div className="hero-buttons">
-                            <a href="#" className="store-link scale-hover"><img src={PLAY_STORE_IMG} alt="Play Store" /></a>
-                            <a href="#" className="store-link scale-hover"><img src={APP_STORE_IMG} alt="App Store" /></a>
+                            <div className="coming-soon-tile">
+                                <div className="tile-icon">🍎</div>
+                                <div className="tile-text">
+                                    <span className="tile-label">Coming Soon</span>
+                                    <span className="tile-platform">App Store</span>
+                                </div>
+                            </div>
+                            <div className="coming-soon-tile">
+                                <div className="tile-icon">🤖</div>
+                                <div className="tile-text">
+                                    <span className="tile-label">Coming Soon</span>
+                                    <span className="tile-platform">Google Play</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -87,19 +104,31 @@ const LandingPage = () => {
                         <div className="float-card c2">❤️ Favorites</div>
                     </div>
                     <div className="showcase-info">
-                        <span className="pill-badge">Mobile First</span>
+                        <span className="pill-badge">Coming Soon</span>
                         <h2>Real Estate in<br />Your Pocket</h2>
-                        <p>Experience the power of SangrurEstate on the go.</p>
+                        <p>We are building the best mobile experience for you. Stay tuned!</p>
                         <ul className="feature-list">
                             <li><span className="check">✓</span><div><strong>Immersive Visuals</strong><span>High-res photos & videos.</span></div></li>
                             <li><span className="check">✓</span><div><strong>Direct Chat</strong><span>Connect with sellers directly.</span></div></li>
                             <li><span className="check">✓</span><div><strong>Smart Alerts</strong><span>Get notified on price drops.</span></div></li>
                         </ul>
                         <div className="download-area">
-                            <p>Available now on iOS and Android</p>
-                            <div className="hero-buttons">
-                                <a href="#" className="store-link"><img src={PLAY_STORE_IMG} alt="Play Store" /></a>
-                                <a href="#" className="store-link"><img src={APP_STORE_IMG} alt="App Store" /></a>
+                            <p>Launching soon on iOS and Android</p>
+                            <div className="coming-soon-container">
+                                <div className="coming-soon-tile">
+                                    <div className="tile-icon">🍎</div>
+                                    <div className="tile-text">
+                                        <span className="tile-label">Coming Soon</span>
+                                        <span className="tile-platform">App Store</span>
+                                    </div>
+                                </div>
+                                <div className="coming-soon-tile">
+                                    <div className="tile-icon">🤖</div>
+                                    <div className="tile-text">
+                                        <span className="tile-label">Coming Soon</span>
+                                        <span className="tile-platform">Google Play</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -109,11 +138,11 @@ const LandingPage = () => {
             {/* STATS */}
             <section className="section stats" id="stats">
                 <div className="container stats-grid">
-                    <div className="stat-item"><h3 className="grad-num">5k+</h3><p>Listings</p></div>
+                    <div className="stat-item"><h3 className="grad-num">Property Listings</h3><p>Coming Soon</p></div>
                     <div className="divider-vertical"></div>
-                    <div className="stat-item"><h3 className="grad-num">1.2k</h3><p>Families</p></div>
+                    <div className="stat-item"><h3 className="grad-num">For Families</h3><p>Across Sangrur</p></div>
                     <div className="divider-vertical"></div>
-                    <div className="stat-item"><h3 className="grad-num">50+</h3><p>Agents</p></div>
+                    <div className="stat-item"><h3 className="grad-num">With</h3><p>Property Experts</p></div>
                 </div>
             </section>
 
@@ -122,7 +151,7 @@ const LandingPage = () => {
                 <div className="container">
                     <div className="footer-top">
                         <div className="footer-brand">
-                            <h2>SangrurEstate</h2>
+                            <img src={LOGO_IMG} alt="Sangrur Estate" className="brand-logo" style={{ marginBottom: '15px' }} />
                             <p>Simple, transparent, accessible.</p>
                         </div>
                         <div className="footer-nav-links">

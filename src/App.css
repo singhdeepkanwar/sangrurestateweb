@@ -239,14 +239,14 @@ button {
 }
 
 .brand {
-  font-size: 28px;
-  font-weight: 800;
-  letter-spacing: -0.5px;
+  display: flex;
+  align-items: center;
 }
 
-.brand-accent {
-  color: #60A5FA;
-  font-weight: 300;
+.brand-logo {
+  height: 120px;
+  width: auto;
+  object-fit: contain;
 }
 
 .nav-links a,
@@ -307,6 +307,7 @@ button {
 
 .text-gradient {
   background: var(--grad-text);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -556,16 +557,16 @@ button {
 }
 
 .check {
-  background: #22C55E;
-  color: white;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
+  background: transparent;
+  color: #22C55E;
+  width: auto;
+  height: auto;
+  padding-right: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
-  font-weight: 700;
+  font-size: 20px;
+  font-weight: 800;
   flex-shrink: 0;
 }
 
@@ -605,10 +606,11 @@ button {
 }
 
 .grad-num {
-  font-size: 4rem;
+  font-size: 2.5rem;
   font-weight: 800;
   margin: 0;
   background: linear-gradient(135deg, #4F46E5 0%, #EC4899 100%);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -717,4 +719,54 @@ button {
   .nav-links {
     display: none;
   }
+}
+
+/* --- COMING SOON TILES --- */
+.coming-soon-container {
+  display: flex;
+  gap: 20px;
+  justify-content: flex-start;
+  margin-top: 20px;
+}
+
+.coming-soon-tile {
+  background: rgba(255, 255, 255, 0.05);
+  /* very subtle white overlay */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 12px 20px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease, background 0.3s ease;
+  cursor: default;
+}
+
+.coming-soon-tile:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.tile-icon {
+  font-size: 24px;
+}
+
+.tile-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.tile-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  color: #94A3B8;
+  letter-spacing: 0.5px;
+  font-weight: 700;
+}
+
+.tile-platform {
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
 }
