@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import '../App.css'; // Assuming styles are global or import specific css
 import MOCK_PHONE_IMG from '../assets/app-mockup.png';
 import HERO_VIDEO from '../assets/hero-video.mp4';
@@ -11,7 +11,6 @@ import LOGO_IMG from '../assets/logo-white.png';
 
 
 const LandingPage = () => {
-    const navigate = useNavigate();
 
     return (
         <div className="landing-wrapper fade-in">
