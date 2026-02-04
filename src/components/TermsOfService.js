@@ -15,7 +15,7 @@ const TermsOfService = () => (
         </nav>
         <div className="doc-content">
             <h1>Terms of Service</h1>
-            <p className="last-updated">Last updated: February 3, 2026</p>
+            <p className="last-updated">Last updated: October 24, 2026</p>
 
             <section>
                 <h3>1. Acceptance of Terms</h3>

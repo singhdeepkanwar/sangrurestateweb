@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { Menu, X } from 'lucide-react';
 import '../App.css'; // Assuming styles are global or import specific css
 import MOCK_PHONE_IMG from '../assets/app-mockup.png';
 import HERO_VIDEO from '../assets/hero-video.mp4';
@@ -11,6 +12,10 @@ import LOGO_IMG from '../assets/logo-white.png';
 
 
 const LandingPage = () => {
+    const navigate = useNavigate();
+    const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
+    const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
     return (
         <div className="landing-wrapper fade-in">
@@ -26,10 +31,16 @@ const LandingPage = () => {
                         <div className="brand">
                             <img src={LOGO_IMG} alt="Sangrur Estate" className="brand-logo" />
                         </div>
-                        <div className="nav-links">
-                            <a href="#features">Features</a>
-                            <a href="#app">Get App</a>
-                            <Link to="/faq" className="nav-link-btn">FAQ</Link>
+
+                        {/* Mobile Menu Toggle */}
+                        <button className="menu-toggle" onClick={toggleMenu} aria-label="Toggle menu">
+                            {isMenuOpen ? <X size={28} color="white" /> : <Menu size={28} color="white" />}
+                        </button>
+
+                        <div className={`nav-links ${isMenuOpen ? 'mobile-open' : ''}`}>
+                            <a href="#features" onClick={() => setIsMenuOpen(false)}>Features</a>
+                            <a href="#app" onClick={() => setIsMenuOpen(false)}>Get App</a>
+                            <Link to="/faq" className="nav-link-btn" onClick={() => setIsMenuOpen(false)}>FAQ</Link>
 
                             <button className="nav-cta" style={{ cursor: 'default' }}>Coming Soon</button>
                         </div>
