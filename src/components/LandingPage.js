@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import '../App.css'; // Assuming styles are global or import specific css
 import MOCK_PHONE_IMG from '../assets/app-mockup.png';
@@ -12,7 +12,7 @@ import LOGO_IMG from '../assets/logo-white.png';
 
 
 const LandingPage = () => {
-    const navigate = useNavigate();
+
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
@@ -171,7 +171,7 @@ const LandingPage = () => {
                         </div>
                     </div>
                     <div className="footer-bottom">
-                        <p>&copy; 2026 SangrurEstate. All rights reserved.</p>
+                        <p>&copy; {new Date().getFullYear()} SangrurEstate. All rights reserved.</p>
                     </div>
                 </div>
             </footer>
