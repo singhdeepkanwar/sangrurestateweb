@@ -1,5 +1,5 @@
 /* =============================================
-   LOGIN PAGE — split-panel layout
+   LOGIN PAGE — split-panel layout  |  Green theme
    ============================================= */
 
 .login-page {
@@ -8,13 +8,13 @@
   font-family: var(--font-family);
 }
 
-/* ── Left: dark branding panel ── */
+/* ── Left: dark green branding panel ── */
 .login-left {
   flex: 1;
-  background: var(--color-primary);
+  background: #051e0a;
   background-image:
-    radial-gradient(ellipse at 20% 50%, rgba(59,130,246,0.18) 0%, transparent 60%),
-    radial-gradient(ellipse at 80% 10%, rgba(59,130,246,0.10) 0%, transparent 50%);
+    radial-gradient(ellipse at 20% 50%, rgba(22,163,74,0.22) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 10%, rgba(22,163,74,0.12) 0%, transparent 50%);
   color: #fff;
   display: flex;
   flex-direction: column;
@@ -37,7 +37,7 @@
   width: 44px;
   height: 44px;
   border-radius: 14px;
-  background: var(--color-accent);
+  background: #16a34a;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -53,7 +53,7 @@
 }
 
 .login-logo-sub {
-  color: var(--color-accent);
+  color: #4ade80;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 2px;
@@ -90,10 +90,10 @@
   border-top: 1px solid rgba(255,255,255,0.1);
 }
 
-.ls-item { display: flex; flex-direction: column; gap: 3px; }
-.ls-num  { font-size: 1.3rem; font-weight: 800; color: #fff; }
-.ls-label{ font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.5px; }
-.ls-div  { width: 1px; height: 36px; background: rgba(255,255,255,0.12); }
+.ls-item  { display: flex; flex-direction: column; gap: 3px; }
+.ls-num   { font-size: 1.3rem; font-weight: 800; color: #4ade80; }
+.ls-label { font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.5px; }
+.ls-div   { width: 1px; height: 36px; background: rgba(255,255,255,0.12); }
 
 /* ── Right: form panel ── */
 .login-right {
@@ -128,7 +128,7 @@
 }
 
 .lp-dot.active {
-  background: var(--color-accent);
+  background: #16a34a;
   width: 24px;
   border-radius: 4px;
 }
@@ -165,8 +165,8 @@
   margin-bottom: 8px;
 }
 
-.ls-req  { color: var(--color-error); margin-left: 2px; }
-.ls-opt  { color: var(--color-muted); font-weight: 400; text-transform: none; letter-spacing: 0; font-size: 11px; margin-left: 4px; }
+.ls-req { color: var(--color-error); margin-left: 2px; }
+.ls-opt { color: var(--color-muted); font-weight: 400; text-transform: none; letter-spacing: 0; font-size: 11px; margin-left: 4px; }
 
 .ls-field { margin-bottom: 20px; }
 
@@ -186,8 +186,8 @@
 }
 
 .ls-input:focus {
-  border-color: var(--color-accent);
-  box-shadow: 0 0 0 3px rgba(59,130,246,0.12);
+  border-color: #16a34a;
+  box-shadow: 0 0 0 3px rgba(22,163,74,0.12);
 }
 
 .ls-input::placeholder { color: var(--color-placeholder); }
@@ -210,8 +210,8 @@
 }
 
 .ls-phone-row:focus-within {
-  border-color: var(--color-accent);
-  box-shadow: 0 0 0 3px rgba(59,130,246,0.12);
+  border-color: #16a34a;
+  box-shadow: 0 0 0 3px rgba(22,163,74,0.12);
 }
 
 .ls-cc {
@@ -236,37 +236,40 @@
   margin-bottom: 0;
 }
 
-/* OTP boxes */
+/* ── OTP boxes — fixed size ── */
 .ls-otp-row {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   margin-bottom: 20px;
 }
 
 .ls-otp-box {
   flex: 1;
-  height: 68px;
+  min-width: 0;          /* prevents overflow */
+  height: 54px;
   border: 1.5px solid var(--color-border);
   border-radius: var(--radius);
   text-align: center;
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   font-weight: 700;
   color: var(--color-primary);
   background: var(--color-bg);
   outline: none;
   transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
   font-family: var(--font-family);
+  box-sizing: border-box;
 }
 
 .ls-otp-box:focus {
-  border-color: var(--color-accent);
-  box-shadow: 0 0 0 3px rgba(59,130,246,0.12);
+  border-color: #16a34a;
+  box-shadow: 0 0 0 3px rgba(22,163,74,0.12);
   background: var(--color-surface);
 }
 
 .ls-otp-box.filled {
-  border-color: var(--color-accent);
-  background: var(--color-surface);
+  border-color: #16a34a;
+  background: #f0fdf4;
+  color: #15803d;
 }
 
 /* Resend */
@@ -282,7 +285,7 @@
 .ls-resend-btn {
   background: none;
   border: none;
-  color: var(--color-accent);
+  color: #16a34a;
   font-size: 14px;
   font-weight: 700;
   cursor: pointer;
@@ -297,7 +300,7 @@
 .ls-btn {
   width: 100%;
   height: 52px;
-  background: var(--color-primary);
+  background: #15803d;
   color: #fff;
   border: none;
   border-radius: var(--radius);
@@ -314,7 +317,7 @@
 }
 
 .ls-btn:hover:not(:disabled) {
-  background: var(--color-accent);
+  background: #166534;
   transform: translateY(-1px);
 }
 
@@ -365,14 +368,10 @@
   line-height: 1.6;
 }
 
-.ls-terms a {
-  color: var(--color-accent);
-  font-weight: 600;
-}
-
+.ls-terms a { color: #16a34a; font-weight: 600; }
 .ls-terms a:hover { text-decoration: underline; }
 
-/* Two-col row for city + address */
+/* Two-col row */
 .ls-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -415,8 +414,8 @@
 }
 
 .ls-checkbox.checked {
-  background: var(--color-accent);
-  border-color: var(--color-accent);
+  background: #16a34a;
+  border-color: #16a34a;
 }
 
 .ls-role-row {
@@ -441,12 +440,12 @@
 }
 
 .ls-role-btn.sel {
-  border-color: var(--color-accent);
-  background: var(--color-accent-light);
-  color: var(--color-accent-dark);
+  border-color: #16a34a;
+  background: #f0fdf4;
+  color: #15803d;
 }
 
-/* Spinner animation */
+/* Spinner */
 .spin { animation: spin 0.8s linear infinite; }
 
 /* =============================================
@@ -458,7 +457,7 @@
   .login-right {
     width: 100%;
     min-width: unset;
-    background: var(--color-primary);
+    background: #051e0a;
     align-items: flex-start;
     padding: 0;
   }
@@ -473,22 +472,25 @@
     padding: 36px 28px 48px;
   }
 
-  /* Show a mini logo on mobile */
   .login-right::before {
     content: '';
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+    top: 0; left: 0; right: 0;
     height: 80px;
-    background: var(--color-primary);
+    background: #051e0a;
     z-index: 0;
   }
 }
 
+@media (max-width: 480px) {
+  .ls-otp-box { height: 50px; font-size: 1.25rem; }
+  .ls-otp-row { gap: 8px; }
+}
+
 @media (max-width: 400px) {
-  .login-card { padding: 28px 20px 40px; border-radius: 20px 20px 0 0; }
-  .ls-otp-box { height: 58px; font-size: 1.5rem; }
+  .login-card { padding: 28px 16px 40px; border-radius: 20px 20px 0 0; }
+  .ls-otp-box { height: 46px; font-size: 1.1rem; }
+  .ls-otp-row { gap: 6px; }
   .ls-row { grid-template-columns: 1fr; gap: 0; }
   .login-brand-copy h1 { font-size: 2.4rem; }
 }
