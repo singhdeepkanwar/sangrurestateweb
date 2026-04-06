@@ -44,7 +44,7 @@ export default function LandingPage() {
 
             <p className="lp-hero-p">
               Buy, sell, and rent homes, plots, and commercial spaces across
-              Sangrur — verified listings, direct inquiries, no middlemen.
+              Sangrur — verified listings and direct inquiries.
             </p>
 
             <a
