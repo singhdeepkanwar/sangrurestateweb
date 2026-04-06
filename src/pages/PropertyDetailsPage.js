@@ -56,12 +56,17 @@ export default function PropertyDetailsPage() {
 
   const handleFavorite = async () => {
     if (savingFav) return;
+    const prev = isSaved;
+    setIsSaved(!prev);         // optimistic — instant feedback
     setSavingFav(true);
     try {
       const res = await toggleFavorite(id);
       setIsSaved(res.data.status === 'favorited');
-    } catch { /* ignore */ }
-    finally { setSavingFav(false); }
+    } catch {
+      setIsSaved(prev);        // revert on failure
+    } finally {
+      setSavingFav(false);
+    }
   };
 
   const handleShare = async () => {
@@ -75,14 +80,15 @@ export default function PropertyDetailsPage() {
 
   const handleInquire = async () => {
     if (inquired || inquiryLoading) return;
-    setInquiryLoading(true);
+    setInquired(true);          // optimistic — instant feedback
+    setInquirySuccess(true);
+    setTimeout(() => setInquirySuccess(false), 4000);
     try {
       await inquireProperty(id);
-      setInquired(true);
-      setInquirySuccess(true);
-      setTimeout(() => setInquirySuccess(false), 4000);
-    } catch { /* ignore */ }
-    finally { setInquiryLoading(false); }
+    } catch {
+      setInquired(false);       // revert on failure
+      setInquirySuccess(false);
+    }
   };
 
   // Gallery navigation

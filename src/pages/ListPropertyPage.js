@@ -70,9 +70,9 @@ export default function ListPropertyPage() {
   const [city, setCity] = useState('Sangrur');
   const [address, setAddress] = useState('');
 
-  // Step 3 — Amenities
+  // Step 3 — Amenities  (object map {[id]: true} for O(1) toggle/lookup)
   const [allAmenities, setAllAmenities] = useState([]);
-  const [selectedAmenities, setSelectedAmenities] = useState([]);
+  const [selectedAmenities, setSelectedAmenities] = useState({});
 
   // Step 4 — Images
   const [images, setImages] = useState([]);      // { id?, url, file?, isNew }
@@ -109,7 +109,9 @@ export default function ListPropertyPage() {
         setBathrooms(p.bathrooms ? String(p.bathrooms) : '');
         setCity(p.city || 'Sangrur');
         setAddress(p.address || '');
-        setSelectedAmenities((p.amenities || []).map((a) => (typeof a === 'object' ? a.id : a)));
+        const amenityMap = {};
+        (p.amenities || []).forEach((a) => { amenityMap[typeof a === 'object' ? a.id : a] = true; });
+        setSelectedAmenities(amenityMap);
 
         const imgs = (p.images || []).map((img) => ({
           id: img.id,
@@ -189,7 +191,7 @@ export default function ListPropertyPage() {
         if (bathrooms) fd.append('bathrooms', bathrooms);
       }
 
-      selectedAmenities.forEach((id) => fd.append('amenities', id));
+      Object.keys(selectedAmenities).forEach((id) => fd.append('amenities', id));
 
       // Images
       for (const img of images.filter((i) => i.isNew)) {
@@ -398,13 +400,15 @@ export default function ListPropertyPage() {
               ) : (
                 <div className="lp-amenities-grid">
                   {allAmenities.map((a) => {
-                    const sel = selectedAmenities.includes(a.id);
+                    const sel = !!selectedAmenities[a.id];
                     return (
                       <button key={a.id}
                         className={`lp-amenity-btn ${sel ? 'active' : ''}`}
-                        onClick={() => setSelectedAmenities((prev) =>
-                          sel ? prev.filter((x) => x !== a.id) : [...prev, a.id]
-                        )}>
+                        onClick={() => setSelectedAmenities((prev) => {
+                          const next = { ...prev };
+                          if (sel) delete next[a.id]; else next[a.id] = true;
+                          return next;
+                        })}>
                         {sel && <Check size={12} />} {a.name}
                       </button>
                     );

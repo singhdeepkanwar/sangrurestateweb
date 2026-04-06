@@ -6,6 +6,7 @@ import { toggleFavorite } from '../services/api';
 import './PropertyCard.css';
 
 export default function PropertyCard({ property, onFavoriteToggle }) {
+  const [isFav, setIsFav] = useState(!!property.is_favorite);
   const [saving, setSaving] = useState(false);
   const img = property.images?.[0]?.image;
 
@@ -13,12 +14,19 @@ export default function PropertyCard({ property, onFavoriteToggle }) {
     e.preventDefault();
     e.stopPropagation();
     if (saving) return;
+    const prev = isFav;
+    setIsFav(!prev);           // optimistic — instant feedback
     setSaving(true);
     try {
       const res = await toggleFavorite(property.id);
-      onFavoriteToggle?.(property.id, res.data.status === 'favorited');
-    } catch { /* silently ignore */ }
-    finally { setSaving(false); }
+      const next = res.data.status === 'favorited';
+      setIsFav(next);
+      onFavoriteToggle?.(property.id, next);
+    } catch {
+      setIsFav(prev);          // revert on failure
+    } finally {
+      setSaving(false);
+    }
   };
 
   const typeLabel = PROPERTY_TYPE_LABELS[property.property_type] || property.property_type;
@@ -41,11 +49,11 @@ export default function PropertyCard({ property, onFavoriteToggle }) {
             <span className="prop-badge prop-badge-verified"><ShieldCheck size={10} /> Verified</span>
           </div>
           <button
-            className={`prop-heart ${property.is_favorite ? 'saved' : ''} ${saving ? 'saving' : ''}`}
+            className={`prop-heart ${isFav ? 'saved' : ''} ${saving ? 'saving' : ''}`}
             onClick={handleFavorite}
             aria-label="Save property"
           >
-            <Heart size={16} fill={property.is_favorite ? 'currentColor' : 'none'} />
+            <Heart size={16} fill={isFav ? 'currentColor' : 'none'} />
           </button>
         </div>
 
