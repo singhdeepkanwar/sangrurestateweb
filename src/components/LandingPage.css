@@ -244,6 +244,10 @@
   object-fit: cover;
   display: block;
 }
+
+.lp-pcard-photo-dim {
+  opacity: 0.35;
+}
 .lp-ph-2 {
   background: linear-gradient(135deg, #052e16 0%, #14532d 100%);
 }

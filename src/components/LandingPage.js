@@ -63,8 +63,8 @@ export default function LandingPage() {
 
             <div className="lp-hero-stats">
               <div className="lp-hstat">
-                <span className="lp-hstat-n">500+</span>
-                <span className="lp-hstat-l">Listings Ready</span>
+                <span className="lp-hstat-n">Sangrur</span>
+                <span className="lp-hstat-l">First Platform</span>
               </div>
               <div className="lp-hstat-sep" />
               <div className="lp-hstat">
@@ -84,7 +84,13 @@ export default function LandingPage() {
             <div className="lp-cards-stack">
 
               <div className="lp-pcard lp-pcard-back">
-                <div className="lp-pcard-img-ph lp-ph-2" />
+                <div className="lp-pcard-img-ph lp-ph-2">
+                  <img
+                    src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=560&q=80&auto=format&fit=crop"
+                    alt="Property"
+                    className="lp-pcard-photo lp-pcard-photo-dim"
+                  />
+                </div>
                 <div className="lp-pcard-body">
                   <span className="lp-ptype">Plot · Sangrur</span>
                   <span className="lp-pprice">₹28 Lakh</span>
