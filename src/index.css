@@ -1,13 +1,134 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+/* =============================================
+   DESIGN TOKENS — single source of truth
+   ============================================= */
+:root {
+  /* Brand colours */
+  --color-primary:      #1a1f36;   /* deep navy — headings, hero bg */
+  --color-accent:       #3B82F6;   /* bright blue — CTAs, links, badges */
+  --color-accent-dark:  #2563EB;   /* hover state for accent */
+  --color-accent-light: #EFF6FF;   /* tint for icon backgrounds */
+
+  /* Surfaces */
+  --color-bg:       #F8FAFC;   /* page background */
+  --color-surface:  #FFFFFF;   /* card / panel background */
+  --color-border:   #E2E8F0;   /* dividers, card borders */
+
+  /* Text */
+  --color-text:       #1C1C1C;   /* primary body text */
+  --color-text-soft:  #1E293B;   /* secondary headings */
+  --color-muted:      #64748B;   /* captions, meta */
+  --color-placeholder:#94A3B8;   /* input placeholders */
+
+  /* Status colours */
+  --color-success: #16A34A;
+  --color-warning: #EA580C;
+  --color-error:   #DC2626;
+
+  /* Dark sections (hero, footer, showcase) */
+  --color-dark-bg:   #0f172a;
+  --color-dark-text: #94A3B8;
+
+  /* Gradients */
+  --grad-hero-text: linear-gradient(135deg, #60A5FA 0%, #FFFFFF 100%);
+  --grad-accent:    linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+  --grad-heading:   linear-gradient(135deg, #1a1f36 0%, #3B82F6 100%);
+
+  /* Shape */
+  --radius-sm: 8px;
+  --radius:    12px;
+  --radius-lg: 20px;
+  --radius-xl: 30px;
+
+  /* Shadow */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow:    0 4px 24px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.12);
+
+  /* Typography */
+  --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* Layout */
+  --container-max: 1150px;
+  --container-pad: 20px;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* =============================================
+   RESET & BASE
+   ============================================= */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  background: var(--color-bg);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s, opacity 0.2s;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* =============================================
+   LAYOUT UTILITIES
+   ============================================= */
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--container-pad);
+}
+
+.section {
+  padding: 100px 0;
+  position: relative;
+}
+
+/* =============================================
+   ANIMATION UTILITIES
+   ============================================= */
+.fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.scale-hover:hover {
+  transform: translateY(-3px);
+  transition: transform 0.2s;
 }

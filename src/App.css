@@ -1,38 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
-
+/* Legacy aliases — keep existing components working while we migrate */
 :root {
-  --primary: #4F46E5;
-  --accent: #8B5CF6;
-  --dark-bg: #0F172A;
-  --light-bg: #F8FAFC;
-  --white: #FFFFFF;
-  --text-main: #1E293B;
-  --text-muted: #64748B;
-  --grad-text: linear-gradient(135deg, #60A5FA 0%, #FFFFFF 100%);
-}
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  background: var(--white);
-  color: var(--text-main);
-  overflow-x: hidden;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-  transition: 0.3s;
-}
-
-button {
-  cursor: pointer;
-  border: none;
-  font-family: inherit;
+  --primary:   var(--color-accent);
+  --accent:    var(--color-accent);
+  --dark-bg:   var(--color-dark-bg);
+  --light-bg:  var(--color-bg);
+  --white:     var(--color-surface);
+  --text-main: var(--color-text-soft);
+  --text-muted:var(--color-muted);
+  --grad-text: var(--grad-hero-text);
 }
 
 /* --- UTILS --- */
