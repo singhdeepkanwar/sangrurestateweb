@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback, memo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ChevronRight, ChevronLeft, Upload, X, Check, Loader2,
   Home, FileText, Tag, MapPin, Image as ImageIcon } from 'lucide-react';
@@ -123,6 +123,15 @@ export default function ListPropertyPage() {
       .catch(() => navigate('/my-properties'))
       .finally(() => setLoadingEdit(false));
   }, [editId]);
+
+  // Stable toggle — doesn't change on re-render so React.memo children stay stable
+  const toggleAmenity = useCallback((id) => {
+    setSelectedAmenities((prev) => {
+      const next = { ...prev };
+      if (next[id]) delete next[id]; else next[id] = true;
+      return next;
+    });
+  }, []);
 
   // Keep price unit in sync with listing type changes (create mode only)
   useEffect(() => {
@@ -399,20 +408,14 @@ export default function ListPropertyPage() {
                 <div className="lp-amenities-loading"><Loader2 className="spin" size={20} /> Loading…</div>
               ) : (
                 <div className="lp-amenities-grid">
-                  {allAmenities.map((a) => {
-                    const sel = !!selectedAmenities[a.id];
-                    return (
-                      <button key={a.id}
-                        className={`lp-amenity-btn ${sel ? 'active' : ''}`}
-                        onClick={() => setSelectedAmenities((prev) => {
-                          const next = { ...prev };
-                          if (sel) delete next[a.id]; else next[a.id] = true;
-                          return next;
-                        })}>
-                        {sel && <Check size={12} />} {a.name}
-                      </button>
-                    );
-                  })}
+                  {allAmenities.map((a) => (
+                    <AmenityBtn
+                      key={a.id}
+                      amenity={a}
+                      selected={!!selectedAmenities[a.id]}
+                      onToggle={toggleAmenity}
+                    />
+                  ))}
                 </div>
               )}
             </div>
@@ -480,3 +483,15 @@ export default function ListPropertyPage() {
     </div>
   );
 }
+
+// Memoized so only the toggled button re-renders, not the entire amenities grid
+const AmenityBtn = memo(function AmenityBtn({ amenity, selected, onToggle }) {
+  return (
+    <button
+      className={`lp-amenity-btn ${selected ? 'active' : ''}`}
+      onClick={() => onToggle(amenity.id)}
+    >
+      {selected && <Check size={12} />} {amenity.name}
+    </button>
+  );
+});
