@@ -1,7 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Instagram, MapPin, ArrowRight, CheckCircle } from 'lucide-react';
-import LOGO_IMG from '../assets/logo-white.png';
 import './LandingPage.css';
 
 export default function LandingPage() {
@@ -11,7 +9,10 @@ export default function LandingPage() {
       {/* ── Navbar ── */}
       <nav className="lp-nav">
         <div className="lp-nav-inner">
-          <img src={LOGO_IMG} alt="Sangrur Estate" className="lp-nav-logo" />
+          <div className="lp-logo-text">
+            <span className="lp-logo-script">Sangrur</span>
+            <span className="lp-logo-sub">ESTATE</span>
+          </div>
           <div className="lp-nav-right">
             <a
               href="https://instagram.com/sangrurestate"
@@ -92,6 +93,11 @@ export default function LandingPage() {
 
               <div className="lp-pcard lp-pcard-front">
                 <div className="lp-pcard-img-ph lp-ph-1">
+                  <img
+                    src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=560&q=80&auto=format&fit=crop"
+                    alt="Property"
+                    className="lp-pcard-photo"
+                  />
                   <span className="lp-pcard-badge">For Sale</span>
                   <span className="lp-pcard-badge lp-badge-verified">✓ Verified</span>
                 </div>
@@ -227,52 +233,23 @@ export default function LandingPage() {
 
       {/* ── Instagram ── */}
       <section className="lp-instagram">
-        <div className="lp-section-inner lp-ig-inner">
-          <div className="lp-ig-profile">
-            <div className="lp-ig-avatar">SE</div>
-            <div>
-              <p className="lp-ig-handle">@sangrurestate</p>
-              <p className="lp-ig-status">Account activating soon</p>
-            </div>
-          </div>
-          <div className="lp-ig-posts">
-            {[1, 2, 3].map((i) => (
-              <div key={i} className={`lp-ig-post lp-igp-${i}`}>
-                <div className="lp-ig-post-overlay">
-                  <Instagram size={20} />
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="lp-ig-follow">
-            <h3>Follow us for listings &amp; updates</h3>
-            <p>We'll post new properties, price drops, and local real estate news as soon as we launch.</p>
-            <a
-              href="https://instagram.com/sangrurestate"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="lp-ig-follow-btn"
-            >
-              <Instagram size={16} /> Follow on Instagram
-            </a>
-          </div>
+        <div className="lp-ig-centered">
+          <h3>Follow us for listings &amp; updates</h3>
+          <p>We'll post new properties, price drops, and local real estate news as soon as we launch.</p>
+          <a
+            href="https://instagram.com/sangrurestate"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="lp-ig-follow-btn"
+          >
+            <Instagram size={16} /> Follow on Instagram
+          </a>
         </div>
       </section>
 
       {/* ── Footer ── */}
       <footer className="lp-footer">
         <div className="lp-footer-inner">
-          <div className="lp-footer-top">
-            <div>
-              <img src={LOGO_IMG} alt="Sangrur Estate" className="lp-footer-logo" />
-              <p className="lp-footer-tagline">Simple. Transparent. Local.</p>
-            </div>
-            <div className="lp-footer-links">
-              <Link to="/privacy">Privacy Policy</Link>
-              <Link to="/terms">Terms of Service</Link>
-              <Link to="/faq">FAQ</Link>
-            </div>
-          </div>
           <div className="lp-footer-hr" />
           <div className="lp-footer-bottom">
             <p>&copy; {new Date().getFullYear()} Sangrur Estate. All rights reserved.</p>

@@ -3,6 +3,8 @@
    Theme: Dark green
    ═══════════════════════════════════════════════ */
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap');
+
 .lp-root {
   font-family: var(--font-family);
   background: #fff;
@@ -30,7 +32,37 @@
   justify-content: space-between;
 }
 
-.lp-nav-logo { height: 34px; object-fit: contain; }
+/* Logo text */
+.lp-logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  gap: 1px;
+}
+
+.lp-logo-script {
+  font-family: 'Montserrat', sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 22px;
+  color: #fff;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.lp-logo-sub {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.9);
+  padding-left: 2px;
+}
+
+.lp-logo-footer .lp-logo-script { font-size: 22px; }
+.lp-logo-footer .lp-logo-sub { color: rgba(255,255,255,0.35); }
 
 .lp-nav-ig {
   display: inline-flex;
@@ -99,12 +131,12 @@
 }
 
 .lp-hero-h1 {
-  font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+  font-size: clamp(2.4rem, 5vw, 4rem);
   font-weight: 900;
   color: #fff;
-  line-height: 1.12;
+  line-height: 1.1;
   letter-spacing: -1.5px;
-  margin: 0 0 20px;
+  margin: 0 0 22px;
 }
 
 .lp-hero-em {
@@ -112,11 +144,11 @@
 }
 
 .lp-hero-p {
-  font-size: 16px;
+  font-size: 18px;
   color: rgba(255,255,255,0.6);
   line-height: 1.75;
   margin: 0 0 32px;
-  max-width: 460px;
+  max-width: 480px;
 }
 
 /* Instagram CTA block */
@@ -149,8 +181,8 @@
 }
 
 .lp-hstat { display: flex; flex-direction: column; gap: 3px; }
-.lp-hstat-n { font-size: 1.1rem; font-weight: 800; color: #4ade80; }
-.lp-hstat-l { font-size: 11px; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.5px; }
+.lp-hstat-n { font-size: 1.25rem; font-weight: 800; color: #4ade80; }
+.lp-hstat-l { font-size: 12px; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.5px; }
 .lp-hstat-sep { width: 1px; height: 32px; background: rgba(255,255,255,0.12); }
 
 /* ── Property cards stack (right side of hero) ── */
@@ -199,7 +231,18 @@
 }
 
 .lp-ph-1 {
-  background: linear-gradient(135deg, #14532d 0%, #166534 50%, #15803d 100%);
+  background: #1a2e1a;
+  overflow: hidden;
+  padding: 0;
+}
+
+.lp-pcard-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 .lp-ph-2 {
   background: linear-gradient(135deg, #052e16 0%, #14532d 100%);
@@ -224,7 +267,7 @@
 
 .lp-pcard-row { display: flex; align-items: center; justify-content: space-between; }
 .lp-ptype { font-size: 12px; font-weight: 600; color: #64748b; }
-.lp-pprice { font-size: 1.15rem; font-weight: 800; color: #15803d; }
+.lp-pprice { font-size: 1.3rem; font-weight: 800; color: #15803d; }
 
 .lp-pcard-meta {
   display: flex;
@@ -302,14 +345,14 @@
 }
 
 .lp-step h3 {
-  font-size: 1rem;
+  font-size: 1.15rem;
   font-weight: 800;
   color: #0f172a;
   margin: 0 0 6px;
 }
 
 .lp-step p {
-  font-size: 14px;
+  font-size: 15px;
   color: #64748b;
   line-height: 1.65;
   margin: 0;
@@ -337,7 +380,7 @@
 }
 
 .lp-teaser-header h2 {
-  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
   font-weight: 900;
   color: #0f172a;
   margin: 0 0 10px;
@@ -345,7 +388,7 @@
 }
 
 .lp-teaser-header p {
-  font-size: 15px;
+  font-size: 17px;
   color: #64748b;
   margin: 0;
   max-width: 480px;
@@ -418,7 +461,7 @@
 }
 
 .lp-tcard-type { font-size: 12px; font-weight: 600; color: #64748b; }
-.lp-tcard-price { font-size: 1.1rem; font-weight: 800; color: #15803d; }
+.lp-tcard-price { font-size: 1.25rem; font-weight: 800; color: #15803d; }
 
 .lp-tcard-meta {
   display: flex;
@@ -476,7 +519,7 @@
 }
 
 .lp-features-left h2 {
-  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
   font-weight: 900;
   color: #0f172a;
   line-height: 1.2;
@@ -485,7 +528,7 @@
 }
 
 .lp-feat-sub {
-  font-size: 15px;
+  font-size: 16px;
   color: #64748b;
   line-height: 1.7;
   margin: 0;
@@ -512,73 +555,35 @@
   flex-direction: column;
   gap: 3px;
 }
-.lp-feat-item strong { font-size: 14px; font-weight: 700; color: #0f172a; }
-.lp-feat-item span { font-size: 13px; color: #64748b; line-height: 1.55; }
+.lp-feat-item strong { font-size: 16px; font-weight: 700; color: #0f172a; }
+.lp-feat-item span { font-size: 14px; color: #64748b; line-height: 1.6; }
 
 /* ── Instagram section ── */
 .lp-instagram {
-  padding: 80px 0;
+  padding: 80px 24px;
   background: #051e0a;
+  text-align: center;
 }
 
-.lp-ig-inner {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  gap: 40px;
-  align-items: center;
+.lp-ig-centered {
+  max-width: 520px;
+  margin: 0 auto;
 }
 
-.lp-ig-profile {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.lp-ig-avatar {
-  width: 54px; height: 54px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.lp-ig-centered h3 {
+  font-size: clamp(1.4rem, 3vw, 2rem);
   font-weight: 900;
-  font-size: 16px;
   color: #fff;
-  flex-shrink: 0;
+  margin: 0 0 14px;
+  letter-spacing: -0.3px;
 }
 
-.lp-ig-handle { font-size: 15px; font-weight: 700; color: #fff; margin: 0 0 3px; }
-.lp-ig-status { font-size: 12px; color: rgba(255,255,255,0.45); margin: 0; }
-
-.lp-ig-posts {
-  display: flex;
-  gap: 6px;
-  justify-content: center;
-}
-
-.lp-ig-post {
-  width: 90px; height: 90px;
-  border-radius: 8px;
-  position: relative;
-  overflow: hidden;
-}
-.lp-igp-1 { background: linear-gradient(135deg, #14532d, #166534); }
-.lp-igp-2 { background: linear-gradient(135deg, #064e3b, #065f46); }
-.lp-igp-3 { background: linear-gradient(135deg, #052e16, #14532d); }
-
-.lp-ig-post-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.35);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.lp-ig-centered p {
+  font-size: 16px;
   color: rgba(255,255,255,0.6);
+  line-height: 1.7;
+  margin: 0 0 28px;
 }
-
-.lp-ig-follow { text-align: right; }
-.lp-ig-follow h3 { font-size: 1rem; font-weight: 800; color: #fff; margin: 0 0 6px; }
-.lp-ig-follow p { font-size: 13px; color: rgba(255,255,255,0.5); margin: 0 0 16px; line-height: 1.55; max-width: 260px; margin-left: auto; }
 
 .lp-ig-follow-btn {
   display: inline-flex;
