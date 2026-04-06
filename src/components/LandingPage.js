@@ -1,182 +1,291 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
-import '../App.css'; // Assuming styles are global or import specific css
-import MOCK_PHONE_IMG from '../assets/app-mockup.png';
-import HERO_VIDEO from '../assets/hero-video.mp4';
+import { Instagram, MapPin, ArrowRight, CheckCircle } from 'lucide-react';
 import LOGO_IMG from '../assets/logo-white.png';
+import './LandingPage.css';
 
-// --- ASSETS ---
-// Video is now imported locally
+export default function LandingPage() {
+  return (
+    <div className="lp-root">
 
-
-
-const LandingPage = () => {
-
-    const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-
-    const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-
-    return (
-        <div className="landing-wrapper fade-in">
-            {/* Hero */}
-            <header className="hero" id="home">
-                <video className="hero-video" autoPlay loop muted playsInline>
-                    <source src={HERO_VIDEO} type="video/mp4" />
-                </video>
-                <div className="hero-overlay"></div>
-
-                <nav className="nav">
-                    <div className="container nav-content">
-                        <div className="brand">
-                            <img src={LOGO_IMG} alt="Sangrur Estate" className="brand-logo" />
-                        </div>
-
-                        {/* Mobile Menu Toggle */}
-                        <button className="menu-toggle" onClick={toggleMenu} aria-label="Toggle menu">
-                            {isMenuOpen ? <X size={28} color="white" /> : <Menu size={28} color="white" />}
-                        </button>
-
-                        <div className={`nav-links ${isMenuOpen ? 'mobile-open' : ''}`}>
-                            <a href="#features" onClick={() => setIsMenuOpen(false)}>Features</a>
-                            <a href="#app" onClick={() => setIsMenuOpen(false)}>Get App</a>
-                            <Link to="/faq" className="nav-link-btn" onClick={() => setIsMenuOpen(false)}>FAQ</Link>
-
-                            <button className="nav-cta" style={{ cursor: 'default' }}>Coming Soon</button>
-                        </div>
-                    </div>
-                </nav>
-
-                <div className="hero-body container">
-                    <div className="hero-text">
-                        <span className="hero-badge">#1 Property App in Sangrur</span>
-                        <h1>Find your next<br /><span className="text-highlight">Dream Home</span></h1>
-                        <p className="hero-sub">Buy, Rent, and Sell properties with zero hassle. Verified listings, direct owner contact, and premium insights.</p>
-                        <div className="hero-buttons">
-                            <div className="coming-soon-tile">
-                                <div className="tile-icon">🍎</div>
-                                <div className="tile-text">
-                                    <span className="tile-label">Coming Soon</span>
-                                    <span className="tile-platform">App Store</span>
-                                </div>
-                            </div>
-                            <div className="coming-soon-tile">
-                                <div className="tile-icon">🤖</div>
-                                <div className="tile-text">
-                                    <span className="tile-label">Coming Soon</span>
-                                    <span className="tile-platform">Google Play</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </header>
-
-            {/* VIBRANT FEATURES */}
-            <section className="section features" id="features">
-                <div className="container">
-                    <div className="section-header">
-                        <h2>Everything you need</h2>
-                        <p>We’ve streamlined the real estate journey so you can focus on moving in.</p>
-                    </div>
-                    <div className="features-grid">
-                        <div className="feature-card card-hover">
-                            <div className="icon-box blue">🏠</div>
-                            <h3>Buy & Sell</h3>
-                            <p>List for free or browse thousands of verified homes.</p>
-                        </div>
-                        <div className="feature-card card-hover">
-                            <div className="icon-box green">🔑</div>
-                            <h3>Rental Homes</h3>
-                            <p>Find the perfect rental apartment or house easily.</p>
-                        </div>
-                        <div className="feature-card card-hover">
-                            <div className="icon-box purple">🏢</div>
-                            <h3>Commercial</h3>
-                            <p>Premium office spaces, shops, and industrial plots.</p>
-                        </div>
-                        <div className="feature-card card-hover">
-                            <div className="icon-box orange">🛡️</div>
-                            <h3>Verified</h3>
-                            <p>We physically verify properties to ensure no fakes.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* APP SHOWCASE */}
-            <section className="section app-showcase" id="app">
-                <div className="bg-glow"></div>
-                <div className="container showcase-flex">
-                    <div className="phone-wrapper">
-                        <img src={MOCK_PHONE_IMG} alt="App Interface" className="phone-img floating" />
-                        <div className="float-card c1">📍 Map View</div>
-                        <div className="float-card c2">❤️ Favorites</div>
-                    </div>
-                    <div className="showcase-info">
-                        <span className="pill-badge">Coming Soon</span>
-                        <h2>Real Estate in<br />Your Pocket</h2>
-                        <p>We are building the best mobile experience for you. Stay tuned!</p>
-                        <ul className="feature-list">
-                            <li><span className="check">✓</span><div><strong>Immersive Visuals</strong><span>High-res photos & videos.</span></div></li>
-                            <li><span className="check">✓</span><div><strong>Direct Chat</strong><span>Connect with sellers directly.</span></div></li>
-                            <li><span className="check">✓</span><div><strong>Smart Alerts</strong><span>Get notified on price drops.</span></div></li>
-                        </ul>
-                        <div className="download-area">
-                            <p>Launching soon on iOS and Android</p>
-                            <div className="coming-soon-container">
-                                <div className="coming-soon-tile">
-                                    <div className="tile-icon">🍎</div>
-                                    <div className="tile-text">
-                                        <span className="tile-label">Coming Soon</span>
-                                        <span className="tile-platform">App Store</span>
-                                    </div>
-                                </div>
-                                <div className="coming-soon-tile">
-                                    <div className="tile-icon">🤖</div>
-                                    <div className="tile-text">
-                                        <span className="tile-label">Coming Soon</span>
-                                        <span className="tile-platform">Google Play</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* STATS */}
-            <section className="section stats" id="stats">
-                <div className="container stats-grid">
-                    <div className="stat-item"><h3 className="grad-num">Property Listings</h3><p>Coming Soon</p></div>
-                    <div className="divider-vertical"></div>
-                    <div className="stat-item"><h3 className="grad-num">For Families</h3><p>Across Sangrur</p></div>
-                    <div className="divider-vertical"></div>
-                    <div className="stat-item"><h3 className="grad-num">With</h3><p>Property Experts</p></div>
-                </div>
-            </section>
-
-            {/* Footer */}
-            <footer className="footer">
-                <div className="container">
-                    <div className="footer-top">
-                        <div className="footer-brand">
-                            <img src={LOGO_IMG} alt="Sangrur Estate" className="brand-logo" style={{ marginBottom: '15px' }} />
-                            <p>Simple, transparent, accessible.</p>
-                        </div>
-                        <div className="footer-nav-links">
-                            <Link to="/privacy"><button>Privacy Policy</button></Link>
-                            <Link to="/terms"><button>Terms of Service</button></Link>
-                            <Link to="/faq"><button>FAQ</button></Link>
-                        </div>
-                    </div>
-                    <div className="footer-bottom">
-                        <p>&copy; {new Date().getFullYear()} SangrurEstate. All rights reserved.</p>
-                    </div>
-                </div>
-            </footer>
+      {/* ── Navbar ── */}
+      <nav className="lp-nav">
+        <div className="lp-nav-inner">
+          <img src={LOGO_IMG} alt="Sangrur Estate" className="lp-nav-logo" />
+          <div className="lp-nav-right">
+            <a
+              href="https://instagram.com/sangrurestate"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="lp-nav-ig"
+            >
+              <Instagram size={15} /> Follow us
+            </a>
+          </div>
         </div>
-    );
-}
+      </nav>
 
-export default LandingPage;
+      {/* ── Hero ── */}
+      <section className="lp-hero">
+        <div className="lp-hero-inner">
+
+          {/* Left: Copy */}
+          <div className="lp-hero-left">
+            <div className="lp-launch-pill">
+              <span className="lp-pulse" />
+              Launching Soon in Sangrur
+            </div>
+
+            <h1 className="lp-hero-h1">
+              Sangrur's properties,<br />
+              <span className="lp-hero-em">finally online.</span>
+            </h1>
+
+            <p className="lp-hero-p">
+              Buy, sell, and rent homes, plots, and commercial spaces across
+              Sangrur — verified listings, direct inquiries, no middlemen.
+            </p>
+
+            <a
+              href="https://instagram.com/sangrurestate"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="lp-ig-cta"
+            >
+              <Instagram size={18} />
+              <span>
+                <strong>Follow @sangrurestate</strong>
+                <small>Be first to know when we go live</small>
+              </span>
+              <ArrowRight size={16} className="lp-ig-arrow" />
+            </a>
+
+            <div className="lp-hero-stats">
+              <div className="lp-hstat">
+                <span className="lp-hstat-n">500+</span>
+                <span className="lp-hstat-l">Listings Ready</span>
+              </div>
+              <div className="lp-hstat-sep" />
+              <div className="lp-hstat">
+                <span className="lp-hstat-n">Free</span>
+                <span className="lp-hstat-l">To List</span>
+              </div>
+              <div className="lp-hstat-sep" />
+              <div className="lp-hstat">
+                <span className="lp-hstat-n">Verified</span>
+                <span className="lp-hstat-l">Properties Only</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Right: Property cards preview */}
+          <div className="lp-hero-right">
+            <div className="lp-cards-stack">
+
+              <div className="lp-pcard lp-pcard-back">
+                <div className="lp-pcard-img-ph lp-ph-2" />
+                <div className="lp-pcard-body">
+                  <span className="lp-ptype">Plot · Sangrur</span>
+                  <span className="lp-pprice">₹28 Lakh</span>
+                </div>
+              </div>
+
+              <div className="lp-pcard lp-pcard-front">
+                <div className="lp-pcard-img-ph lp-ph-1">
+                  <span className="lp-pcard-badge">For Sale</span>
+                  <span className="lp-pcard-badge lp-badge-verified">✓ Verified</span>
+                </div>
+                <div className="lp-pcard-body">
+                  <div className="lp-pcard-row">
+                    <span className="lp-ptype">3BHK House · Sangrur</span>
+                  </div>
+                  <span className="lp-pprice">₹65 Lakh</span>
+                  <div className="lp-pcard-meta">
+                    <span><MapPin size={11} /> Sunam Road</span>
+                    <span>1200 Sq.Ft</span>
+                    <span>3 Bed · 2 Bath</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        {/* Scroll curve */}
+        <div className="lp-hero-curve" />
+      </section>
+
+      {/* ── Journey: 3 steps ── */}
+      <section className="lp-journey">
+        <div className="lp-section-inner">
+          <p className="lp-journey-label">How it works</p>
+          <div className="lp-steps">
+            <div className="lp-step">
+              <span className="lp-step-num">01</span>
+              <div>
+                <h3>Browse listings</h3>
+                <p>Filter by type, price, and location across Sangrur district.</p>
+              </div>
+            </div>
+            <div className="lp-step-connector" />
+            <div className="lp-step">
+              <span className="lp-step-num">02</span>
+              <div>
+                <h3>Send an inquiry</h3>
+                <p>One tap. Our team connects you with the seller within 24 hrs.</p>
+              </div>
+            </div>
+            <div className="lp-step-connector" />
+            <div className="lp-step">
+              <span className="lp-step-num">03</span>
+              <div>
+                <h3>Move in</h3>
+                <p>Visit the property, close the deal, and get the keys.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── What's coming: teased cards ── */}
+      <section className="lp-teaser">
+        <div className="lp-section-inner">
+          <div className="lp-teaser-header">
+            <h2>Properties going live soon</h2>
+            <p>These listings will be available the day we launch. Follow us on Instagram to be notified first.</p>
+          </div>
+          <div className="lp-teaser-grid">
+            {[
+              { type: 'House', tag: 'For Sale', price: '₹55 Lakh', area: '1450 Sq.Ft', loc: 'Sangrur City', color: 'lp-tph-1' },
+              { type: 'Plot', tag: 'For Sale', price: '₹18 Lakh', area: '200 Sq.Yd', loc: 'Moonak', color: 'lp-tph-2' },
+              { type: 'Apartment', tag: 'For Rent', price: '₹8,000 /mo', area: '850 Sq.Ft', loc: 'Lehragaga', color: 'lp-tph-3' },
+            ].map((p) => (
+              <div key={p.type + p.loc} className="lp-tcard">
+                <div className={`lp-tcard-img ${p.color}`}>
+                  <div className="lp-tcard-lock">
+                    <span className="lp-lock-icon">🔒</span>
+                    <span>Available at launch</span>
+                  </div>
+                  <span className="lp-tcard-tag">{p.tag}</span>
+                </div>
+                <div className="lp-tcard-body">
+                  <span className="lp-tcard-type">{p.type}</span>
+                  <span className="lp-tcard-price">{p.price}</span>
+                  <div className="lp-tcard-meta">
+                    <span><MapPin size={11} /> {p.loc}</span>
+                    <span>{p.area}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="lp-teaser-cta">
+            <a
+              href="https://instagram.com/sangrurestate"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="lp-ig-pill"
+            >
+              <Instagram size={15} /> Follow @sangrurestate to get notified
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Features ── */}
+      <section className="lp-features">
+        <div className="lp-section-inner">
+          <div className="lp-features-split">
+            <div className="lp-features-left">
+              <p className="lp-feat-label">Built for Sangrur</p>
+              <h2>Everything a local<br />buyer or seller needs</h2>
+              <p className="lp-feat-sub">
+                No national portal fluff. Just the properties that matter in Sangrur, Sunam, Moonak, Dirba, and Lehragaga.
+              </p>
+            </div>
+            <div className="lp-features-right">
+              {[
+                { title: 'Verified listings only', desc: 'Every property is reviewed before going live. No fake or duplicate posts.' },
+                { title: 'List for free', desc: 'Sellers and brokers can post unlimited properties at no cost.' },
+                { title: 'Direct inquiry system', desc: 'No spam calls. Send an inquiry and our team handles the introduction.' },
+                { title: 'Save & track properties', desc: 'Bookmark the ones you like and revisit them anytime.' },
+                { title: 'Mobile app coming soon', desc: 'iOS and Android apps launching alongside the website.' },
+              ].map((f) => (
+                <div key={f.title} className="lp-feat-item">
+                  <CheckCircle size={18} className="lp-feat-check" />
+                  <div>
+                    <strong>{f.title}</strong>
+                    <span>{f.desc}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Instagram ── */}
+      <section className="lp-instagram">
+        <div className="lp-section-inner lp-ig-inner">
+          <div className="lp-ig-profile">
+            <div className="lp-ig-avatar">SE</div>
+            <div>
+              <p className="lp-ig-handle">@sangrurestate</p>
+              <p className="lp-ig-status">Account activating soon</p>
+            </div>
+          </div>
+          <div className="lp-ig-posts">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className={`lp-ig-post lp-igp-${i}`}>
+                <div className="lp-ig-post-overlay">
+                  <Instagram size={20} />
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="lp-ig-follow">
+            <h3>Follow us for listings &amp; updates</h3>
+            <p>We'll post new properties, price drops, and local real estate news as soon as we launch.</p>
+            <a
+              href="https://instagram.com/sangrurestate"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="lp-ig-follow-btn"
+            >
+              <Instagram size={16} /> Follow on Instagram
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Footer ── */}
+      <footer className="lp-footer">
+        <div className="lp-footer-inner">
+          <div className="lp-footer-top">
+            <div>
+              <img src={LOGO_IMG} alt="Sangrur Estate" className="lp-footer-logo" />
+              <p className="lp-footer-tagline">Simple. Transparent. Local.</p>
+            </div>
+            <div className="lp-footer-links">
+              <Link to="/privacy">Privacy Policy</Link>
+              <Link to="/terms">Terms of Service</Link>
+              <Link to="/faq">FAQ</Link>
+            </div>
+          </div>
+          <div className="lp-footer-hr" />
+          <div className="lp-footer-bottom">
+            <p>&copy; {new Date().getFullYear()} Sangrur Estate. All rights reserved.</p>
+            <p>
+              🇮🇳 Proudly made in India &nbsp;·&nbsp; by{' '}
+              <a href="https://makebetter.tech" target="_blank" rel="noopener noreferrer">
+                makeBetter Technologies
+              </a>
+            </p>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+  );
+}
