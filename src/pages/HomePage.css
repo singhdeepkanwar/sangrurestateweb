@@ -30,6 +30,29 @@
   margin: 0;
 }
 
+.home-prebook-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 20px;
+  background: rgba(255,255,255,0.15);
+  border: 1.5px solid rgba(255,255,255,0.4);
+  border-radius: 10px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: var(--font-family);
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.home-prebook-btn:hover {
+  background: rgba(255,255,255,0.25);
+  border-color: rgba(255,255,255,0.7);
+}
+
 /* ── Buy / Rent tabs ── */
 .home-listing-tabs {
   background: var(--color-surface);
@@ -433,4 +456,5 @@
 @media (max-width: 520px) {
   .home-grid { grid-template-columns: 1fr; }
   .home-greeting-bar { padding: 20px 0 16px; }
+  .home-prebook-btn { display: none; }
 }

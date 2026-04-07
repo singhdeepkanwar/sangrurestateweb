@@ -1,5 +1,6 @@
 import React from 'react';
-import { Instagram, MapPin, ArrowRight, CheckCircle } from 'lucide-react';
+import { Instagram, MapPin, ArrowRight, CheckCircle, ClipboardList } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import './LandingPage.css';
 
 export default function LandingPage() {
@@ -47,19 +48,30 @@ export default function LandingPage() {
               Sangrur — verified listings and direct inquiries.
             </p>
 
-            <a
-              href="https://instagram.com/sangrurestate"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="lp-ig-cta"
-            >
-              <Instagram size={18} />
-              <span>
-                <strong>Follow @sangrurestate</strong>
-                <small>Be first to know when we go live</small>
-              </span>
-              <ArrowRight size={16} className="lp-ig-arrow" />
-            </a>
+            <div className="lp-hero-ctas">
+              <a
+                href="https://instagram.com/sangrurestate"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="lp-ig-cta"
+              >
+                <Instagram size={18} />
+                <span>
+                  <strong>Follow @sangrurestate</strong>
+                  <small>Be first to know when we go live</small>
+                </span>
+                <ArrowRight size={16} className="lp-ig-arrow" />
+              </a>
+
+              <Link to="/pre-list" className="lp-prelist-cta">
+                <ClipboardList size={18} />
+                <span>
+                  <strong>Pre-list Your Property</strong>
+                  <small>Register now — free, early placement</small>
+                </span>
+                <ArrowRight size={16} className="lp-ig-arrow" />
+              </Link>
+            </div>
 
             <div className="lp-hero-stats">
               <div className="lp-hstat">
