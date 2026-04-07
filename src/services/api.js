@@ -116,6 +116,10 @@ export const getInquiries = () =>
 export const getAmenities = () =>
   api.get('/amenities/', { params: ts() });
 
+// ---- PRE-LISTING ----
+export const submitPreListing = (data) =>
+  api.post('/pre-listings/', data);
+
 // ---- FILE UPLOADS (fetch — avoids axios multipart boundary issues) ----
 const uploadWithFetch = async (url, method, formData) => {
   const token = localStorage.getItem('access_token');

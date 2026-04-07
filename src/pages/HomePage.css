@@ -30,6 +30,42 @@
   margin: 0;
 }
 
+/* ── Buy / Rent tabs ── */
+.home-listing-tabs {
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  padding: 0;
+}
+
+.hlt-row {
+  display: flex;
+  gap: 0;
+}
+
+.hlt-tab {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 14px 28px;
+  border: none;
+  border-bottom: 3px solid transparent;
+  background: transparent;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: var(--font-family);
+  color: var(--color-muted);
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+
+.hlt-tab:hover { color: var(--color-text); }
+
+.hlt-tab.active {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+}
+
 /* ── Search Bar ── */
 .home-search-bar-wrap {
   background: var(--color-surface);
@@ -46,38 +82,6 @@
   align-items: center;
   gap: 10px;
   margin-bottom: 12px;
-}
-
-/* Buy/Rent toggle */
-.home-type-toggle {
-  display: flex;
-  background: var(--color-bg);
-  border-radius: var(--radius);
-  padding: 3px;
-  border: 1.5px solid var(--color-border);
-  flex-shrink: 0;
-}
-
-.htt-btn {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  padding: 7px 14px;
-  border-radius: 8px;
-  border: none;
-  background: transparent;
-  font-size: 13px;
-  font-weight: 600;
-  font-family: var(--font-family);
-  color: var(--color-muted);
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s;
-  white-space: nowrap;
-}
-
-.htt-btn.active {
-  background: var(--color-primary);
-  color: #fff;
 }
 
 /* Search input */
@@ -216,6 +220,11 @@
   grid-template-columns: 1fr 1fr 1fr auto;
   gap: 20px;
   align-items: start;
+}
+
+.hfp-price-only {
+  grid-template-columns: 1fr auto;
+  align-items: center;
 }
 
 .hfp-section { display: flex; flex-direction: column; gap: 8px; }
@@ -409,17 +418,16 @@
 /* ── Responsive ── */
 @media (max-width: 1024px) {
   .home-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
-  .hfp-inner { grid-template-columns: 1fr 1fr; }
+  .hfp-inner { grid-template-columns: 1fr auto; }
 }
 
 @media (max-width: 768px) {
   .home-greeting-title { font-size: 1.2rem; }
   .home-search-bar-wrap { top: 60px; }
   .home-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
-
-  .home-type-toggle { display: none; } /* shown as chips below */
-
+  .hlt-tab { padding: 12px 20px; font-size: 14px; }
   .hfp-inner { grid-template-columns: 1fr; }
+  .hfp-price-only { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 520px) {

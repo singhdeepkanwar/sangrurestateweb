@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { Search, SlidersHorizontal, X, Home, Key, Building2, MapPin, Layers, ChevronDown, RotateCcw } from 'lucide-react';
+import { Search, SlidersHorizontal, X, Home, Key, RotateCcw } from 'lucide-react';
 import { getProperties } from '../services/api';
 import PropertyCard, { PropertyCardSkeleton } from '../components/PropertyCard';
 import Navbar from '../components/Navbar';
@@ -14,15 +14,32 @@ const PRICE_RANGES = [
   { label: 'Above ₹3Cr', value: { gte: 30_000_000 } },
 ];
 
-const PROP_TYPES = [
+const SALE_TYPES = [
   { label: 'All Types', value: '' },
   { label: 'House', value: 'HOUSE', icon: '🏠' },
-  { label: 'Apartment', value: 'APARTMENT', icon: '🏢' },
   { label: 'Plot', value: 'PLOT', icon: '📐' },
-  { label: 'Land', value: 'LAND', icon: '🌾' },
   { label: 'Commercial', value: 'COMMERCIAL', icon: '🏪' },
-  { label: 'PG', value: 'PG', icon: '🛏' },
 ];
+
+const RENT_TYPES = [
+  { label: 'All Types', value: '' },
+  { label: 'House', value: 'HOUSE', icon: '🏠' },
+  { label: 'PG', value: 'PG', icon: '🛏' },
+  { label: 'Commercial', value: 'COMMERCIAL', icon: '🏪' },
+];
+
+// ── Fuzzy similarity scorer ───────────────────────────────────────────────────
+// Scores a property against a search query by counting how many query tokens
+// appear (case-insensitive substring) in any searchable field.
+function fuzzyScore(property, query) {
+  if (!query.trim()) return 1;
+  const tokens = query.toLowerCase().split(/\s+/).filter(Boolean);
+  const haystack = [
+    property.title, property.description, property.address, property.city,
+  ].join(' ').toLowerCase();
+  const matched = tokens.filter((t) => haystack.includes(t)).length;
+  return matched / tokens.length; // 0–1
+}
 
 export default function HomePage() {
   const { user } = useAuth();
@@ -34,8 +51,15 @@ export default function HomePage() {
   const [priceRange, setPriceRange] = useState(null);
   const [filterOpen, setFilterOpen] = useState(false);
 
+  const propTypes = listingType === 'RENT' ? RENT_TYPES : SALE_TYPES;
+
+  const switchListingType = (type) => {
+    setListingType(type);
+    setPropType('');
+  };
+
   // Data state
-  const [properties, setProperties] = useState([]);
+  const [rawProperties, setRawProperties] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
@@ -48,8 +72,8 @@ export default function HomePage() {
     setError('');
     try {
       const res = await getProperties(params);
-      if (id !== requestRef.current) return; // stale response — discard
-      setProperties(res.data.results || res.data);
+      if (id !== requestRef.current) return;
+      setRawProperties(res.data.results || res.data);
     } catch {
       if (id === requestRef.current) setError('Could not load properties. Please try again.');
     } finally {
@@ -73,8 +97,16 @@ export default function HomePage() {
     return () => clearTimeout(debounceRef.current);
   }, [listingType, propType, priceRange, search, fetchProperties]);
 
+  // Client-side fuzzy filter + sort on top of backend results
+  const properties = search.trim()
+    ? rawProperties
+        .map((p) => ({ ...p, _score: fuzzyScore(p, search) }))
+        .filter((p) => p._score > 0)
+        .sort((a, b) => b._score - a._score)
+    : rawProperties;
+
   const handleFavoriteToggle = (id, isFav) => {
-    setProperties((prev) => prev.map((p) => p.id === id ? { ...p, is_favorite: isFav } : p));
+    setRawProperties((prev) => prev.map((p) => p.id === id ? { ...p, is_favorite: isFav } : p));
   };
 
   const clearFilters = () => {
@@ -105,33 +137,37 @@ export default function HomePage() {
         </div>
       </div>
 
+      {/* ── Buy / Rent tabs ── */}
+      <div className="home-listing-tabs">
+        <div className="container">
+          <div className="hlt-row">
+            <button
+              className={`hlt-tab ${listingType === 'SALE' ? 'active' : ''}`}
+              onClick={() => switchListingType('SALE')}
+            >
+              <Home size={16} /> Buy
+            </button>
+            <button
+              className={`hlt-tab ${listingType === 'RENT' ? 'active' : ''}`}
+              onClick={() => switchListingType('RENT')}
+            >
+              <Key size={16} /> Rent
+            </button>
+          </div>
+        </div>
+      </div>
+
       {/* ── Search & filter bar ── */}
       <div className="home-search-bar-wrap">
         <div className="container">
           <div className="home-search-row">
-            {/* Buy / Rent toggle */}
-            <div className="home-type-toggle">
-              <button
-                className={`htt-btn ${listingType === 'SALE' ? 'active' : ''}`}
-                onClick={() => setListingType('SALE')}
-              >
-                <Home size={14} /> Buy
-              </button>
-              <button
-                className={`htt-btn ${listingType === 'RENT' ? 'active' : ''}`}
-                onClick={() => setListingType('RENT')}
-              >
-                <Key size={14} /> Rent
-              </button>
-            </div>
-
             {/* Search input */}
             <div className="home-search-input-wrap">
               <Search size={16} className="home-search-icon" />
               <input
                 className="home-search-input"
                 type="text"
-                placeholder="Search location, city, or keyword…"
+                placeholder="Search by location, title, or keyword…"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
@@ -142,20 +178,20 @@ export default function HomePage() {
               )}
             </div>
 
-            {/* Filter button */}
+            {/* Price filter button */}
             <button
-              className={`home-filter-btn ${filterOpen ? 'open' : ''} ${activeFilterCount > 0 ? 'has-filters' : ''}`}
+              className={`home-filter-btn ${filterOpen ? 'open' : ''} ${priceRange ? 'has-filters' : ''}`}
               onClick={() => setFilterOpen((o) => !o)}
             >
               <SlidersHorizontal size={15} />
-              Filters
-              {activeFilterCount > 0 && <span className="hfb-badge">{activeFilterCount}</span>}
+              Price
+              {priceRange && <span className="hfb-badge">1</span>}
             </button>
           </div>
 
-          {/* Quick-filter chips */}
+          {/* Property type chips */}
           <div className="home-chip-row">
-            {PROP_TYPES.map((t) => (
+            {propTypes.map((t) => (
               <button
                 key={t.value}
                 className={`home-chip ${propType === t.value ? 'active' : ''}`}
@@ -168,36 +204,11 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* ── Filter panel ── */}
+      {/* ── Price filter panel ── */}
       {filterOpen && (
         <div className="home-filter-panel">
           <div className="container">
-            <div className="hfp-inner">
-              <div className="hfp-section">
-                <label className="hfp-label"><MapPin size={13} /> City</label>
-                <input
-                  className="hfp-input"
-                  placeholder="e.g. Sangrur, Sunam, Dhuri…"
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                />
-              </div>
-
-              <div className="hfp-section">
-                <label className="hfp-label"><Layers size={13} /> Property Type</label>
-                <div className="hfp-chips">
-                  {PROP_TYPES.map((t) => (
-                    <button
-                      key={t.value}
-                      className={`hfp-chip ${propType === t.value ? 'active' : ''}`}
-                      onClick={() => setPropType(t.value)}
-                    >
-                      {t.icon && <span>{t.icon}</span>} {t.label}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
+            <div className="hfp-inner hfp-price-only">
               <div className="hfp-section">
                 <label className="hfp-label">💰 Price Range</label>
                 <div className="hfp-chips">
@@ -212,13 +223,12 @@ export default function HomePage() {
                   ))}
                 </div>
               </div>
-
               <div className="hfp-actions">
                 <button className="hfp-clear" onClick={clearFilters}>
-                  <RotateCcw size={13} /> Clear All
+                  <RotateCcw size={13} /> Clear
                 </button>
                 <button className="hfp-apply" onClick={() => setFilterOpen(false)}>
-                  Show Results
+                  Apply
                 </button>
               </div>
             </div>
@@ -236,7 +246,7 @@ export default function HomePage() {
                 ? 'No properties found'
                 : `${properties.length} propert${properties.length === 1 ? 'y' : 'ies'} found`}
               {listingType === 'SALE' ? ' for sale' : ' for rent'}
-              {propType ? ` · ${PROP_TYPES.find(t => t.value === propType)?.label}` : ''}
+              {propType ? ` · ${propTypes.find(t => t.value === propType)?.label}` : ''}
             </p>
           )}
           {hasActiveFilters && !loading && (

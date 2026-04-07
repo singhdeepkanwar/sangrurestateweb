@@ -211,7 +211,8 @@ export default function ListPropertyPage() {
       }
 
       if (isEdit && deletedIds.length > 0) {
-        fd.append('delete_images', deletedIds.join(','));
+        // Backend expects delete_images as a repeated field (ListField), not a comma-separated string
+        deletedIds.forEach((id) => fd.append('delete_images', String(id)));
       }
 
       if (isEdit) {

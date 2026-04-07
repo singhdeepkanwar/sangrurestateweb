@@ -22,6 +22,7 @@ import InquiriesPage from './pages/InquiriesPage';
 import ProfilePage from './pages/ProfilePage';
 import ListPropertyPage from './pages/ListPropertyPage';
 import ManagePropertiesPage from './pages/ManagePropertiesPage';
+import PreListingPage from './pages/PreListingPage';
 
 // Redirect authenticated users away from /login
 function PublicOnlyRoute({ children }) {
@@ -81,6 +82,9 @@ function AppRoutes() {
         <Route path="/my-properties" element={
           <ProtectedRoute><ManagePropertiesPage /></ProtectedRoute>
         } />
+
+        {/* Pre-launch — public */}
+        <Route path="/pre-list" element={<PreListingPage />} />
 
         {/* Fallback */}
         <Route path="*" element={<Navigate to="/" replace />} />
