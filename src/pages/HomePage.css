@@ -6,7 +6,7 @@
 
 /* ── Greeting ── */
 .home-greeting-bar {
-  background: linear-gradient(135deg, var(--color-primary) 0%, #2d3561 100%);
+  background: linear-gradient(135deg, var(--color-primary) 0%, #166534 100%);
   padding: 28px 0 24px;
   color: #fff;
 }

@@ -5,10 +5,10 @@
    ============================================= */
 :root {
   /* Brand colours */
-  --color-primary:      #1a1f36;   /* deep navy — headings, hero bg */
-  --color-accent:       #3B82F6;   /* bright blue — CTAs, links, badges */
-  --color-accent-dark:  #2563EB;   /* hover state for accent */
-  --color-accent-light: #EFF6FF;   /* tint for icon backgrounds */
+  --color-primary:      #14532d;   /* deep green — headings, hero bg */
+  --color-accent:       #16a34a;   /* green — CTAs, links, badges */
+  --color-accent-dark:  #15803d;   /* hover state for accent */
+  --color-accent-light: #dcfce7;   /* tint for icon backgrounds */
 
   /* Surfaces */
   --color-bg:       #F8FAFC;   /* page background */
@@ -31,9 +31,9 @@
   --color-dark-text: #94A3B8;
 
   /* Gradients */
-  --grad-hero-text: linear-gradient(135deg, #60A5FA 0%, #FFFFFF 100%);
-  --grad-accent:    linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
-  --grad-heading:   linear-gradient(135deg, #1a1f36 0%, #3B82F6 100%);
+  --grad-hero-text: linear-gradient(135deg, #4ade80 0%, #FFFFFF 100%);
+  --grad-accent:    linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+  --grad-heading:   linear-gradient(135deg, #14532d 0%, #16a34a 100%);
 
   /* Shape */
   --radius-sm: 8px;
